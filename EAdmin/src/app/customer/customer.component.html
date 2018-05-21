@@ -13,10 +13,10 @@
       <td>{{cust.lastname}}</td>
       <td>{{cust.birthdate}}</td>
       <td>
-        <a [routerLink]="['custdetail',cust.id]">Detail</a>
+        <a [routerLink]="['../custdetail',cust.id]">Detail</a>
       </td>
       <td>
-          <a [routerLink]="['accounts',cust._id]">Account</a>
+          <a [routerLink]="['account',cust._id]">Account</a>
         </td>
     </tr>
   </table>

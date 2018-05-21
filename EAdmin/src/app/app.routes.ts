@@ -8,7 +8,7 @@ import { AccountComponent } from './account/account.component';
 const MYROUTES: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },
     { path: 'customer', component: CustomerComponent },
-    { path: 'custdetail', component: CustDetailComponent },
+    { path: 'custdetail/:id', component: CustDetailComponent },
     { path: 'accounts', component: AccountComponent },
 ];
 

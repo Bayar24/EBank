@@ -1,0 +1,19 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2>Statement</h2>
+  <table>
+    <tr>
+      <th>Transaction Date</th>
+      <th>Amount</th>
+      <th>Begin balance</th>
+      <th>End Balance</th>
+
+      <td></td>
+    </tr>
+    <tr *ngFor="let tran of transactions">
+      <td>{{tran.trandate}}</td>
+      <td>{{tran.amount}}</td>
+      <td>{{tran.begbal}}</td>
+      <td>{{tran.endbal}}</td>
+    </tr>
+  </table>
+</div>

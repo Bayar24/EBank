@@ -1,0 +1,16 @@
+<div class="col-md-6 col-md-offset-3">
+    <h2>Accounts</h2>
+      <table>
+        <tr>
+          <th>Account Number</th>
+          <th>Current Balance</th>
+          <th>Open Date</th>
+          <td></td>
+        </tr>
+        <tr *ngFor="let acnt of accounts">
+          <td>{{acnt.id}}</td>
+          <td>{{acnt.currentbal}}</td>
+          <td>{{acnt.opendate}}</td>
+        </tr>
+      </table>
+</div>

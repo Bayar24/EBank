@@ -10,7 +10,19 @@ const httpOptions = {
 export class DataService {
 
   constructor(public http: HttpClient) { }
+  getCustomers() {
+    let custs: any[];
+    custs = [{id:'4112334', firstname:'John', lastname:'Wick' , birthdate:'12/02/2018'},
+    {id:'4112334', firstname:'John1', lastname:'Wick1' , birthdate:'12/02/2018'},
+    {id:'4112334', firstname:'John2', lastname:'Wick2' , birthdate:'12/02/2018'},];
+    return custs;//this.http.get(`http://localhost:3000/api/recent/transaction/`);
+  }
   getAccounts() {
+    let accts: any[];
+    accts = [{id:'4112334', currentbal:'12345', opendate:'12/02/2018'}];
+    return accts;//this.http.get(`http://localhost:3000/api/recent/transaction/`);
+  }
+  getAccount() {
     let accts: any[];
     accts = [{id:'4112334', currentbal:'12345', opendate:'12/02/2018'}];
     return accts;//this.http.get(`http://localhost:3000/api/recent/transaction/`);

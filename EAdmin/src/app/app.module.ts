@@ -10,6 +10,7 @@ import { DataService } from './data.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CustomerComponent } from './customer/customer.component';
+import { CustDetailComponent } from './customer/custdetail.component';
 import { AccountComponent } from './account/account.component';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { AccountComponent } from './account/account.component';
     AppComponent,
     HomeComponent,
     CustomerComponent,
+    CustDetailComponent,
     AccountComponent
   ],
   imports: [

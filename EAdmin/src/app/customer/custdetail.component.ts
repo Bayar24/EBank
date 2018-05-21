@@ -4,10 +4,9 @@ import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  templateUrl: './custdetail.component.html'
 })
-export class CustomerComponent implements OnInit {
+export class CustDetailComponent implements OnInit {
   private sub: Subscription;
   private customers: any[];
   constructor(private data: DataService) { }

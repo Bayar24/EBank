@@ -1,19 +1,23 @@
 <div class="col-md-6 col-md-offset-3">
-    <h2>Statement</h2>
-    <table>
-      <tr>
-        <th>Transaction Date</th>
-        <th>Amount</th>
-        <th>Begin balance</th>
-        <th>End Balance</th>
-  
-        <td></td>
-      </tr>
-      <tr *ngFor="let tran of transactions">
-        <td>{{tran.trandate}}</td>
-        <td>{{tran.amount}}</td>
-        <td>{{tran.begbal}}</td>
-        <td>{{tran.endbal}}</td>
-      </tr>
-    </table>
-  </div>
+  <h2>Customers</h2>
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Birth Date</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let cust of customers">
+      <td>{{cust.firstname}}</td>
+      <td>{{cust.lastname}}</td>
+      <td>{{cust.birthdate}}</td>
+      <td>
+        <a [routerLink]="['custdetail',cust.id]">Detail</a>
+      </td>
+      <td>
+          <a [routerLink]="['accounts',cust._id]">Account</a>
+        </td>
+    </tr>
+  </table>
+</div>

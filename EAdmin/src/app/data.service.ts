@@ -71,7 +71,7 @@ export class DataService {
         "date_of_birth": "1993-03-04",
         "contact_phone": 311212312,
         "email_address": "hs.khosbayar@gmail.com",
-        "sex": true,
+        "sex": "Male",
         "address": { "zip": "52556", "state": "IA", "city": "Fairfield", "street": "2000N Court", "no": "16C" }
       },
       {
@@ -85,7 +85,7 @@ export class DataService {
         "date_of_birth": "1993-03-04",
         "contact_phone": 311212312,
         "email_address": "hs.khosbayar@gmail.com",
-        "sex": true,
+        "sex": "Female",
         "address": { "zip": "52556", "state": "IA", "city": "Fairfield", "street": "2000N Court", "no": "16C" }
       },
       {
@@ -99,11 +99,10 @@ export class DataService {
         "date_of_birth": "1993-03-04",
         "contact_phone": 311212312,
         "email_address": "hs.khosbayar@gmail.com",
-        "sex": true,
+        "sex": "Male",
         "address": { "zip": "52556", "state": "IA", "city": "Fairfield", "street": "2000N Court", "no": "16C" }
       }];
     for (let i = 0; i < custs.length; i++) {
-      console.log(custs[i].cust_no);
       if (custs[i].cust_no === id) {
         return custs[i];
       }

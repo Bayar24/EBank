@@ -1,3 +1,10 @@
-<p>
-  transaction works!
-</p>
+<div class="jumbotron">
+    <h1 class="display-4">Choose the transaction type</h1>
+    <p class="lead"></p>
+    <hr class="my-4">
+    <nav class="nav nav-pills nav-justified">
+        <a class="nav-item nav-link" [routerLinkActive]="['active']" routerLink="deposit">Deposit</a>
+        <a class="nav-item nav-link" [routerLinkActive]="['active']" routerLink="withdraw">Withdraw</a>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>

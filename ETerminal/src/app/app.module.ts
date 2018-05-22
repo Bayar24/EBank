@@ -3,6 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+//Angular Material 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+
 
 import { myRoutes } from './app.routes';
 import { DataService } from './data.service';
@@ -13,6 +21,8 @@ import { StatementComponent } from './statement/statement.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { LoginComponent } from './login/login.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { DepositComponent } from './deposit/deposit.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +31,9 @@ import { AccountsComponent } from './accounts/accounts.component';
     StatementComponent,
     TransactionComponent,
     LoginComponent,
-    AccountsComponent
+    AccountsComponent,
+    DepositComponent,
+    WithdrawComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +41,14 @@ import { AccountsComponent } from './accounts/accounts.component';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    myRoutes
+    myRoutes,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatTableModule,
+    MatIconModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

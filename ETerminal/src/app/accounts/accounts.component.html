@@ -1,16 +1,20 @@
-<div class="col-md-6 col-md-offset-3">
-    <h2>Accounts</h2>
-      <table>
-        <tr>
-          <th>Account Number</th>
-          <th>Current Balance</th>
-          <th>Open Date</th>
-          <td></td>
-        </tr>
-        <tr *ngFor="let acnt of accounts">
-          <td>{{acnt.id}}</td>
-          <td>{{acnt.currentbal}}</td>
-          <td>{{acnt.opendate}}</td>
-        </tr>
-      </table>
+<div class="container">
+  <div class="row justify-content-md-center">
+        <h2>Your accounts</h2>
+          <table class="table table-dark table-striped table-hover">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Account Number</th>
+              <th scope="col">Current Balance</th>
+              <th scope="col">Open Date</th>
+              
+            </tr>
+            <tr *ngFor="let acnt of accounts; let i=index">
+              <td>{{i+1}}</td>
+              <td>{{acnt.id}}</td>
+              <td>{{acnt.currentbal}}</td>
+              <td>{{acnt.opendate}}</td>
+            </tr>
+          </table>
+    </div>
 </div>

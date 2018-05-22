@@ -2,6 +2,7 @@
   <h2>Customers</h2>
   <table class="table table-striped table-bordered table-hover table-condensed">
     <tr>
+      <th>Customer No</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Birth Date</th>
@@ -9,15 +10,16 @@
       <th></th>
     </tr>
     <tr *ngFor="let cust of customers">
-      <td>{{cust.firstname}}</td>
-      <td>{{cust.lastname}}</td>
-      <td>{{cust.birthdate}}</td>
+      <td>{{cust.cust_no}}</td>
+      <td>{{cust.first_name}}</td>
+      <td>{{cust.last_name}}</td>
+      <td>{{cust.date_of_birth}}</td>
       <td>
-        <a [routerLink]="['../custdetail',cust.id]">Detail</a>
+        <a [routerLink]="['../custdetail',cust.cust_no]">Detail</a>
       </td>
       <td>
-          <a [routerLink]="['account',cust._id]">Account</a>
-        </td>
+        <a [routerLink]="['account',cust._id]">Account</a>
+      </td>
     </tr>
   </table>
 </div>

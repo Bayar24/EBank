@@ -15,7 +15,7 @@ export class CustDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private data: DataService) { }
 
   ngOnInit() {
-    let custid = this.route.snapshot.paramMap.get('id');
+    let custid = parseInt(this.route.snapshot.paramMap.get('id'));
     //this.sub 
     this.customer = this.data.getCustomer(custid);/* .subscribe(
       res => this.accounts = res,

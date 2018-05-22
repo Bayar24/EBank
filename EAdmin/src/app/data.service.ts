@@ -12,19 +12,101 @@ export class DataService {
   constructor(public http: HttpClient) { }
   getCustomers() {
     let custs: any[];
-    custs = [{ id: '4112331', firstname: 'John', lastname: 'Wick', birthdate: '12/02/2018' },
-    { id: '4112332', firstname: 'John1', lastname: 'Wick1', birthdate: '12/02/2018' },
-    { id: '4112333', firstname: 'John2', lastname: 'Wick2', birthdate: '12/02/2018' },];
+    custs = [
+      {
+        "cust_no": 123124123,
+        "first_name": "Khosbayar",
+        "middle_name": "",
+        "last_name": "Buyandalai",
+        "ssn": "123-123-123",
+        "username": "hs",
+        "password": "password",
+        "date_of_birth": "1993-03-04",
+        "contact_phone": 311212312,
+        "email_address": "hs.khosbayar@gmail.com",
+        "sex": true,
+        "address": { "zip": "52556", "state": "IA", "city": "Fairfield", "street": "2000N Court", "no": "16C" }
+      },
+      {
+        "cust_no": 22222,
+        "first_name": "Khosbayar1",
+        "middle_name": "",
+        "last_name": "Buyandalai",
+        "ssn": "123-123-123",
+        "username": "hs",
+        "password": "password",
+        "date_of_birth": "1993-03-04",
+        "contact_phone": 311212312,
+        "email_address": "hs.khosbayar@gmail.com",
+        "sex": true,
+        "address": { "zip": "52556", "state": "IA", "city": "Fairfield", "street": "2000N Court", "no": "16C" }
+      },
+      {
+        "cust_no": 111111,
+        "first_name": "Khosbayar2",
+        "middle_name": "",
+        "last_name": "Buyandalai",
+        "ssn": "123-123-123",
+        "username": "hs",
+        "password": "password",
+        "date_of_birth": "1993-03-04",
+        "contact_phone": 311212312,
+        "email_address": "hs.khosbayar@gmail.com",
+        "sex": true,
+        "address": { "zip": "52556", "state": "IA", "city": "Fairfield", "street": "2000N Court", "no": "16C" }
+      }];
     return custs;//this.http.get(`http://localhost:3000/api/recent/transaction/`);
   }
-  getCustomer(id: string) {
+  getCustomer(id: number) {
     let custs: any[];
-    custs = [{ id: '4112334', firstname: 'John', lastname: 'Wick', birthdate: '12/02/2018' },
-    { id: '4112334', firstname: 'John1', lastname: 'Wick1', birthdate: '12/02/2018' },
-    { id: '4112334', firstname: 'John2', lastname: 'Wick2', birthdate: '12/02/2018' },];
+    custs = [
+      {
+        "cust_no": 123124123,
+        "first_name": "Khosbayar",
+        "middle_name": "",
+        "last_name": "Buyandalai",
+        "ssn": "123-123-123",
+        "username": "hs",
+        "password": "password",
+        "date_of_birth": "1993-03-04",
+        "contact_phone": 311212312,
+        "email_address": "hs.khosbayar@gmail.com",
+        "sex": true,
+        "address": { "zip": "52556", "state": "IA", "city": "Fairfield", "street": "2000N Court", "no": "16C" }
+      },
+      {
+        "cust_no": 22222,
+        "first_name": "Khosbayar1",
+        "middle_name": "",
+        "last_name": "Buyandalai",
+        "ssn": "123-123-123",
+        "username": "hs",
+        "password": "password",
+        "date_of_birth": "1993-03-04",
+        "contact_phone": 311212312,
+        "email_address": "hs.khosbayar@gmail.com",
+        "sex": true,
+        "address": { "zip": "52556", "state": "IA", "city": "Fairfield", "street": "2000N Court", "no": "16C" }
+      },
+      {
+        "cust_no": 111111,
+        "first_name": "Khosbayar2",
+        "middle_name": "",
+        "last_name": "Buyandalai",
+        "ssn": "123-123-123",
+        "username": "hs",
+        "password": "password",
+        "date_of_birth": "1993-03-04",
+        "contact_phone": 311212312,
+        "email_address": "hs.khosbayar@gmail.com",
+        "sex": true,
+        "address": { "zip": "52556", "state": "IA", "city": "Fairfield", "street": "2000N Court", "no": "16C" }
+      }];
     for (let i = 0; i < custs.length; i++) {
-      if (custs[i].id = id)
+      console.log(custs[i].cust_no);
+      if (custs[i].cust_no === id) {
         return custs[i];
+      }
     }
     return null;//this.http.get(`http://localhost:3000/api/recent/transaction/`);
   }

@@ -9,7 +9,7 @@ const MYROUTES: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },
     { path: 'customer', component: CustomerComponent },
     { path: 'custdetail/:id', component: CustDetailComponent },
-    { path: 'accounts', component: AccountComponent },
+    { path: 'accounts/:id', component: AccountComponent },
 ];
 
 export const myRoutes = RouterModule.forRoot(MYROUTES);

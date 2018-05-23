@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
 
 import { myRoutes } from './app.routes';
 import { DataService } from './data.service';
@@ -13,6 +17,9 @@ import { CustomerComponent } from './customer/customer.component';
 import { CustDetailComponent } from './customer/custdetail.component';
 import { AccountComponent } from './account/account.component';
 import { AcntDetailComponent } from './account/acntdetail.component';
+import { TransactionComponent } from './transaction/transaction.component';
+import { DepositComponent } from './deposit/deposit.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +28,10 @@ import { AcntDetailComponent } from './account/acntdetail.component';
     CustomerComponent,
     CustDetailComponent,
     AccountComponent,
-    AcntDetailComponent
+    AcntDetailComponent,
+    TransactionComponent,
+    DepositComponent,
+    WithdrawComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +39,10 @@ import { AcntDetailComponent } from './account/acntdetail.component';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatInputModule,
+    MatSortModule,
     myRoutes
   ],
   providers: [DataService],

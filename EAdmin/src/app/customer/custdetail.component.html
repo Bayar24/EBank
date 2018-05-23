@@ -11,7 +11,8 @@
                 </div>
                 <div class="form-group-sm">
                     <label>First name</label>
-                    <input type="text" name="first_name" class="form-control input-sm" [(ngModel)]="customer.first_name" #pFirstName="ngModel" required>
+                    <input type="text" name="first_name" class="form-control input-sm" [(ngModel)]="customer.first_name" #pFirstName="ngModel"
+                        required>
                     <div *ngIf="pFirstName.errors && (pFirstName.dirty || pFirstName.touched)">
                         <p *ngIf="pFirstName.errors.required" class="red">Required</p>
                     </div>
@@ -91,7 +92,10 @@
                 </div>
                 <br/>
                 <div align="right">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" style="margin-right: 10px">Submit</button>
+                    <button type="button" class="btn btn-warning">
+                        <a [routerLink]="['../../customer']">Back</a>
+                    </button>
                 </div>
             </div>
 

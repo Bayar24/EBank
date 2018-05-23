@@ -45,7 +45,7 @@ export class AcntDetailComponent implements OnInit {
         current_bal: this.amount.value,
         begin_bal: this.amount.value,
         bank_account: this.bank_account,
-        status: 'Open'
+        acct_status: 'Open'
       }
       this.sub = this.data.createAccount(this.acnt).subscribe(
         res => {

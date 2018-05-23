@@ -24,6 +24,9 @@ export class DataService {
     let id = custinfo.cust_no;
     return this.http.put(`http://localhost:3000/cust/${id}`, body, httpOptions);
   }
+  getAllAccounts() {
+    return this.http.get(`http://localhost:3000/acct`);
+  }
   getCustAccounts(id: number) {
     return this.http.get(`http://localhost:3000/cust/${id}/acct`);
   }

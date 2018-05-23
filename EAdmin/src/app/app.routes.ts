@@ -14,6 +14,7 @@ const MYROUTES: Routes = [
     { path: 'customer', component: CustomerComponent },
     { path: 'custdetail', component: CustDetailComponent },
     { path: 'custdetail/:id', component: CustDetailComponent },
+    { path: 'account', component: AccountComponent },
     { path: 'account/:id', component: AccountComponent },
     { path: 'acntdetail', component: AcntDetailComponent },
     { path: 'account/acntdetail/:id', component: AcntDetailComponent },

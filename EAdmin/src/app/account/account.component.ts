@@ -12,14 +12,19 @@ export class AccountComponent implements OnInit {
   private sub: Subscription;
   private accounts: any;
   private custid: string;
+  displayedColumns = ['acct_no', 'cust_no', 'acct_name', 'begin_bal', 'acct_type', 'acct_status', 'bank_account'];
+
   constructor(private route: ActivatedRoute, private data: DataService) { }
 
   ngOnInit() {
     this.custid = this.route.snapshot.paramMap.get('id');
     if (this.custid !== undefined && this.custid !== null) {
-      this.sub  = this.data.getCustAccounts(parseInt(this.custid)).subscribe(
-      res => this.accounts = res,
-      err => console.log(err)); 
+      this.sub = this.data.getCustAccounts(parseInt(this.custid)).subscribe(
+        res => this.accounts = res,
+        err => console.log(err));
     }
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

@@ -59,9 +59,9 @@ export class CustDetailComponent implements OnInit {
       this.sub = this.data.insertCustomer(this.custForm.value).subscribe(
         res => console.log(res),
         err => console.log(err));
-        this.isNew = false;
+      this.isNew = false;
     }
-    else{
+    else {
       this.sub = this.data.updateCustomer(this.custForm.value).subscribe(
         res => console.log(res),
         err => console.log(err));

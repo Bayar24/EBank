@@ -1,0 +1,90 @@
+<form novalidate #f="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Customer No</label>
+        <input type="number" name="cust_no" [(ngModel)]="customer.cust_no" #pCustNo="ngModel" required>
+        <div *ngIf="pCustNo.errors && (pCustNo.dirty || pCustNo.touched)">
+            <p *ngIf="pCustNo.errors.required" class="red">Required</p>
+        </div>
+    </div>
+    <div>
+        <label>First name</label>
+        <input type="text" name="first_name" [(ngModel)]="customer.first_name" #pFirstName="ngModel" required>
+        <div *ngIf="pFirstName.errors && (pFirstName.dirty || pFirstName.touched)">
+            <p *ngIf="pFirstName.errors.required" class="red">Required</p>
+        </div>
+    </div>
+    <div>
+        <label>Middle name</label>
+        <input type="text" name="middle_name" [(ngModel)]="customer.middlename">
+    </div>
+    <div>
+        <label>Last name</label>
+        <input type="text" name="last_name" [(ngModel)]="customer.last_name" #pLastName="ngModel" required>
+        <div *ngIf="pLastName.errors && (pLastName.dirty || pLastName.touched)">
+            <p *ngIf="pLastName.errors.required" class="red">Required</p>
+        </div>
+    </div>
+    <div>
+        <label>SSN</label>
+        <input type="text" name="ssn" [(ngModel)]="customer.ssn" #pSsn="ngModel" required>
+        <div *ngIf="pSsn.errors && (pSsn.dirty || pSsn.touched)">
+            <p *ngIf="pSsn.errors.required" class="red">Required</p>
+        </div>
+    </div>
+    <div>
+        <label>Birth date</label>
+        <input type="text" name="date_of_birth" [(ngModel)]="customer.date_of_birth">
+    </div>
+    <div>
+        <label>User name</label>
+        <input type="text" name="username" [(ngModel)]="customer.username" #pUsername="ngModel" required>
+        <div *ngIf="pUsername.errors && (pUsername.dirty || pUsername.touched)">
+            <p *ngIf="pUsername.errors.required" class="red">Required</p>
+        </div>
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="text" name="password" [(ngModel)]="customer.password" #pPassword="ngModel" required>
+        <div *ngIf="pPassword.errors && (pPassword.dirty || pPassword.touched)">
+            <p *ngIf="pPassword.errors.required" class="red">Required</p>
+        </div>
+    </div>
+    <div>
+        <label>Contact Phone</label>
+        <input type="text" name="contact_phone" [(ngModel)]="customer.contact_phone">
+    </div>
+    <div>
+        <label>Email address</label>
+        <input type="text" name="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+            [(ngModel)]="customer.email_address" #pEmail="ngModel">
+        <div *ngIf="!pEmail.valid">
+            Invalid email
+        </div>
+    </div>
+    <!--     <div class="radio" *ngFor="let g of genders">
+        <label>
+            <input type="radio" name="gender" [(ngModel)]="customer.sex" [value]="g"> {{g}}
+        </label>
+    </div> -->
+    <div ngModelGroup="address">
+        <div>
+            <label>Address</label>
+            <input type="text" name="zip" [(ngModel)]="customer.address.zip">
+        </div>
+        <div>
+            <label>City</label>
+            <input type="text" name="city" [(ngModel)]="customer.address.city">
+        </div>
+        <div>
+            <label>Street</label>
+            <input type="text" name="street" [(ngModel)]="customer.address.street">
+        </div>
+        <div>
+            <label>No</label>
+            <input type="text" name="no" [(ngModel)]="customer.address.no">
+        </div>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>

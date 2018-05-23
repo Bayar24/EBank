@@ -28,10 +28,8 @@ export class DataService {
   getCustAccounts(id: number) {
     return this.http.get(`http://localhost:3000/cust/${id}/acct`);
   }
-  getAccount() {
-    let accts: any[];
-    accts = [{ id: '4112334', currentbal: '12345', opendate: '12/02/2018' }];
-    return accts;//this.http.get(`http://localhost:3000/api/recent/transaction/`);
+  getAccount(id: string) {
+    return this.http.get(`http://localhost:3000/acct/${id}`);
   }
   getTransactions() {
     let trans: any[];

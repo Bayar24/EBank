@@ -1,15 +1,68 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DataService } from '../data.service';
+import { Subscription } from 'rxjs';
+import { CustInfo } from '../customer/custinfo'
+import { AcntInfo } from '../account/acctinfo'
+interface Tran {
+  cust_no: number,
+  name: string;
+  acct_no: string;
+  acct_name: string;
+  acct_no2: string;
+  acct_name2: string;
+  accounts: any[];
+}
 @Component({
   selector: 'app-deposit',
   templateUrl: './deposit.component.html',
   styleUrls: ['./deposit.component.css']
 })
 export class DepositComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('custno') private custno: any;
+  @ViewChild('acctno2') private acctno2: any;
+  private sub: Subscription;
+  private tran: any;
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.tran = {
+      cust_no: undefined,
+      name: '',
+      accounts: [],
+    }
   }
-
+  search() {
+    if (this.custno.value) {
+      this.sub = this.data.getCustomer(this.custno.value).subscribe(
+        res => {
+          this.tran.name = (<CustInfo>res).first_name + " " + (<CustInfo>res).last_name;
+          this.sub = this.data.getCustAccounts(this.custno.value).subscribe(
+            result => { this.tran.accounts = result; console.log(this.tran.accounts) },
+            err => console.log(err)
+          );
+        },
+        err => console.log(err));
+    }
+  }
+  searchReceiver() {
+    if (this.acctno2.value) {
+      this.tran.acct_no2 = this.acctno2.value;
+      this.sub = this.data.getAccount(this.acctno2.value).subscribe(
+        res => {
+          this.tran.acct_name2 = (<AcntInfo>res).acct_name;
+          console.log(this.tran.acct_name2);
+        },
+        err => console.log(err));
+    }
+  }
+  onChange(val: string) {
+    if (val !== "Choose..") {
+      this.tran.acct_no = val;
+      this.tran.accounts.forEach(element => {
+        if (element.acct_no === parseInt(val)) {
+          this.tran.acct_name = element.acct_name;
+        }
+      });
+    }
+  }
 }

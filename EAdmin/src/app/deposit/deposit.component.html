@@ -1,34 +1,53 @@
 <div class="deposit container">
   <form>
     <div class="form-group">
+      <label for="receiverCustNo">Sender's customer NO</label>
+      <div class="input-group mb-3">
+        <input type="text" id="receiverCustNo" class="form-control" placeholder="Receiver's customer NO" aria-label="Receiver's customer NO"
+          aria-describedby="basic-addon2" name="cust_no" [(ngModel)]="tran.cust_no" #custno="ngModel">
+        <div class="input-group-append">
+          <button class="btn btn-outline-success" type="button" (click)="search()">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="receiverName">Sender's name</label>
+      <input type="text" class="form-control" readonly id="receiverName" placeholder="Choose sender's customer NO" name="name"
+        [(ngModel)]="tran.name">
+    </div>
+    <hr />
+    <div class="form-group">
       <label for="InputAccountNum">Account number</label>
       <div class="input-group">
-        <select class="custom-select" id="InputAccountNum">
-          <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <select class="custom-select" id="InputAccountNum" (change)="onChange($event.target.value)">
+          <option>Choose..</option>
+          <option *ngFor="let acnt of tran.accounts" [value]="acnt.acct_no">
+            {{acnt.acct_no}}
+          </option>
         </select>
       </div>
       <small id="emailHelp" class="form-text text-muted">Please choose the one of your accounts!</small>
     </div>
     <div class="form-group">
       <label for="InputAccountName">Account name</label>
-      <input type="text" class="form-control" readonly id="InputAccountName" placeholder="Choose your account number">
+      <input type="text" class="form-control" readonly id="InputAccountName" placeholder="Choose your account number" [(ngModel)]="tran.acct_name"
+        name="acct_name">
     </div>
     <hr />
     <div class="form-group">
       <label for="InputReceiverAccountNum">Receiver's account number</label>
       <div class="input-group mb-3">
-        <input type="text" id="InputReceiverAccountNum" class="form-control" placeholder="Receiver's account number" aria-label="Receiver's account number" aria-describedby="basic-addon2">
+        <input type="text" id="InputReceiverAccountNum" class="form-control" placeholder="Receiver's account number" aria-label="Receiver's account number"
+          aria-describedby="basic-addon2" name="acct_no2" [(ngModel)]="tran.acct_no2" #acctno2="ngModel">
         <div class="input-group-append">
-          <button class="btn btn-outline-success" type="button">Search</button>
+          <button class="btn btn-outline-success" type="button" (click)="searchReceiver()">Search</button>
         </div>
       </div>
     </div>
     <div class="form-group">
       <label for="InputReceiverAccountName">Receiver's account name</label>
-      <input type="text" class="form-control" readonly id="InputReceiverAccountName" placeholder="Choose receiver's account number">
+      <input type="text" class="form-control" readonly id="InputReceiverAccountName" placeholder="Choose receiver's account number"
+        name="acct_name2" [(ngModel)]="tran.acct_name2">
     </div>
     <hr />
     <div class="form-group">

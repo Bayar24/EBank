@@ -9,18 +9,20 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="customer">Customer <span class="sr-only">(current)</span></a>
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="customer">Account <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="account">Account</a>
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="transaction">Transaction</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" [routerLinkActive]="['active']" routerLink="statement">Statement</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-                <span class="userlink">Hello, User!&nbsp;&nbsp;&nbsp;</span>
                 <a class="btn btn-outline-light" [routerLinkActive]="['active']" routerLink="login">Login</a>
+
+                <span class="userlink">&nbsp;&nbsp;&nbsp;Hello, User!&nbsp;&nbsp;&nbsp;</span>
+                <a class="btn btn-outline-light" [routerLinkActive]="['active']" routerLink="logout">Logout</a>
         </form>
     </div>
   </nav>

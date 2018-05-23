@@ -19,10 +19,9 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                    <a class="btn btn-outline-light" [routerLinkActive]="['active']" routerLink="login">Login</a>
-
-                    <span class="userlink">&nbsp;&nbsp;&nbsp;Hello, User!&nbsp;&nbsp;&nbsp;</span>
-                    <a class="btn btn-outline-light" [routerLinkActive]="['active']" routerLink="logout">Logout</a>
+                    <a *ngIf="!auth.isLoggedIn" class="btn btn-outline-light" [routerLinkActive]="['active']" routerLink="login">Login</a>
+                    <span *ngIf="auth.isLoggedIn && auth.user"  class="userlink">&nbsp;&nbsp;&nbsp;Hello, {{auth.user.first_name}} {{auth.user.last_name}}!&nbsp;&nbsp;&nbsp;</span>
+                    <a *ngIf="auth.isLoggedIn && auth.user" (click)="logout()" routerLink="login" class="btn btn-outline-light">Logout</a>
             </form>
         </div>
       </nav>

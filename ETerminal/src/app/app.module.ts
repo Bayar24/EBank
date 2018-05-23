@@ -10,6 +10,7 @@ import { MatNativeDateModule, MatInputModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { Routes, RouterModule } from '@angular/router';
 
 
 import { myRoutes } from './app.routes';
@@ -21,8 +22,10 @@ import { StatementComponent } from './statement/statement.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { LoginComponent } from './login/login.component';
 import { AccountsComponent } from './accounts/accounts.component';
-import { DepositComponent } from './deposit/deposit.component';
-import { WithdrawComponent } from './withdraw/withdraw.component';
+import { AuthService } from './auth.service';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -31,9 +34,7 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
     StatementComponent,
     TransactionComponent,
     LoginComponent,
-    AccountsComponent,
-    DepositComponent,
-    WithdrawComponent
+    AccountsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +49,13 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
     MatNativeDateModule,
     MatInputModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    ToastrModule.forRoot()
   ],
-  providers: [DataService],
+  exports: [
+    RouterModule
+  ],
+  providers: [DataService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

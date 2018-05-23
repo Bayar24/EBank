@@ -4,51 +4,33 @@
   <hr class="my-4">
   <div class="row justify-content-md-center">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-      <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      <ng-container matColumnDef="acct_no">
+        <th mat-header-cell *matHeaderCellDef> Account No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.acct_no}} </td>
       </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <ng-container matColumnDef="acct_name">
+        <th mat-header-cell *matHeaderCellDef> Account Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.acct_name}} </td>
       </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      <ng-container matColumnDef="acct_status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.acct_status}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      <ng-container matColumnDef="current_bal">
+        <th mat-header-cell *matHeaderCellDef> Current balance </th>
+        <td mat-cell *matCellDef="let element"> {{element.current_bal}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acct_type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.acct_type}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <!-- <table class="table table-dark table-striped table-hover">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Account Number</th>
-        <th scope="col">Current Balance</th>
-        <th scope="col">Open Date</th>
-
-      </tr>
-      <tr *ngFor="let acnt of accounts; let i=index">
-        <td>{{i+1}}</td>
-        <td>{{acnt.id}}</td>
-        <td>{{acnt.currentbal}}</td>
-        <td>{{acnt.opendate}}</td>
-      </tr>
-    </table> -->
   </div>
 </div>

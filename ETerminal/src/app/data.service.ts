@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -8,12 +9,14 @@ const httpOptions = {
 
 @Injectable()
 export class DataService {
-
-  constructor(public http: HttpClient) { }
+  currentUser;
+  constructor(public http: HttpClient,private authService: AuthService) { }
   getAccounts() {
-    let accts: any[];
-    accts = [{id:'4112334', currentbal:'12345', opendate:'12/02/2018'}];
-    return accts;//this.http.get(`http://localhost:3000/api/recent/transaction/`);
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.dir(`http://localhost:3000/cust/${this.currentUser.cust_no}/acct`);
+    return this.http.get(`http://localhost:3000/cust/${this.currentUser.cust_no}/acct`,{
+      headers: this.authService.buildHeaders()
+    });
   }
   getTransactions() {
     let trans: any[];

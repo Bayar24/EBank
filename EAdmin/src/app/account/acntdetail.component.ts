@@ -1,59 +1,60 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { DataService } from '../data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DataService } from '../data.service';
 
+interface Tran {
+  cust_no: number,
+  name: string;
+  acct_no: string;
+  acct_name: string;
+  acct_no2: string;
+  acct_name2: string;
+  accounts: any[];
+}
 @Component({
-  selector: 'acntdetail',
+  selector: 'app-deposit',
   templateUrl: './acntdetail.component.html'
 })
 export class AcntDetailComponent implements OnInit {
-  @ViewChild('f') private custForm: any;
+  @ViewChild('acctname') private acctname: any;
+  @ViewChild('amount') private amount: any;
   private sub: Subscription;
-  private account: any;
-  private isNew: boolean = false;
-  private genders = [
-    'Male',
-    'Female'
-  ];
-  constructor(private route: ActivatedRoute, private data: DataService) { }
-  ngOnInit() {
-    this.load();
+  private acnt: any;
+  private acct_no: any;
+  private acct_name: any;
+  private amnt: any;
+  private custid: number = 0;
+  private bank_account: boolean = false;
+  constructor(private route: ActivatedRoute, private data: DataService) {
   }
-  load() {
-    this.account = {
-      cust_no: undefined,
-      first_name: '',
-      middle_name: '',
-      last_name: '',
-      ssn: '',
-      username: '',
-      password: '',
-      date_of_birth: '',
-      contact_phone: undefined,
-      email_address: '',
-      sex: 'Male',
-      address: {
-        zip: '',
-        state: '',
-        city: '',
-        street: '',
-        no: ''
-      }
-    };
+
+  ngOnInit() {
+    let id = this.route.snapshot.paramMap.get('id');
+    if (id)
+      this.custid = parseInt(id);
+    else
+      this.bank_account = true;
   }
   onSubmit() {
-    if (this.isNew) {
-      this.sub = this.data.insertCustomer(this.custForm.value).subscribe(
-        res => console.log(res),
-        err => console.log(err));
-        this.isNew = false;
-    }
-    else{
-      this.sub = this.data.updateCustomer(this.custForm.value).subscribe(
-        res => console.log(res),
+    if (this.acct_no && this.acct_name) {
+      this.acnt = {
+        acct_no: this.acct_no,
+        cust_no: this.custid,
+        acct_name: this.acctname.value,
+        current_bal: this.amount.value,
+        begin_bal: this.amount.value,
+        bank_account: this.bank_account,
+        status: 'Open'
+      }
+      this.sub = this.data.createAccount(this.acnt).subscribe(
+        res => {
+          console.log(res);
+        },
         err => console.log(err));
     }
   }
+  generate() {
+    this.acct_no = 40000000 + Math.floor(Math.random() * (999999 - 100000 + 1));
+  }
 }
-

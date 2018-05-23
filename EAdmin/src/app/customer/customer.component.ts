@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 
@@ -9,13 +9,15 @@ import { DataService } from '../data.service';
 })
 export class CustomerComponent implements OnInit {
   private sub: Subscription;
-  private customers: any[];
+  private customers: any;
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    //this.sub 
-    this.customers = this.data.getCustomers();/* .subscribe(
-      res => this.accounts = res,
-      err => console.log(err)); */
+    this.sub = this.data.getCustomers().subscribe(
+      res => this.customers = res,
+      err => console.log(err)); 
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

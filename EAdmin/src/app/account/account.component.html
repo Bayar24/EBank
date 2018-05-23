@@ -1,3 +1,30 @@
-<p>
-  account works!
-</p>
+<div class="container">
+  <div class="justify-content-md-center">
+    <h2>Accounts</h2>
+    <div>
+      <a [routerLink]="['../acntdetail',custid]">
+        <button class="btn btn-success pull-right"> Add Account</button>
+      </a>
+    </div>
+    <table class="table table-dark table-striped table-hover">
+      <tr>
+        <th>Account No</th>
+        <th>Customer No</th>
+        <th>Account name</th>
+        <th>Begin Balance</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Bank Account</th>
+      </tr>
+      <tr *ngFor="let acnt of accounts">
+        <td>{{acnt.acct_no}}</td>
+        <td>{{acnt.cust_no}}</td>
+        <td>{{acnt.acct_name}}</td>
+        <td>{{acnt.begin_bal}}</td>
+        <td>{{acnt.acct_type}}</td>
+        <td>{{acnt.acct_status}}</td>
+        <td>{{acnt.bank_account}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

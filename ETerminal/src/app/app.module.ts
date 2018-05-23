@@ -10,6 +10,8 @@ import { MatNativeDateModule, MatInputModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 import { Routes, RouterModule } from '@angular/router';
 
 
@@ -48,6 +50,7 @@ import { AuthGuard } from './auth.guard';
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+    MatSnackBarModule,
     MatTableModule,
     MatIconModule,
     ToastrModule.forRoot()

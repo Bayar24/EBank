@@ -1,33 +1,30 @@
 <div class="jumbotron">
   <h1 class="display-4">Transaction statement</h1>
-  <form>
+  <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="form-group">
-      <label for="InputAccountNum">Account number</label>
+      <label for="InputAccountNum">Account number <small style="color:red;">{{errMsgAcct}}</small></label>
       <div class="input-group">
-        <select class="custom-select" id="InputAccountNum">
-          <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <select [(ngModel)]="acct_no" required name="acct_no" class="custom-select" id="InputAccountNum">
+          <option value="" selected>Choose...</option>
+          <option *ngFor="let acc of accounts;" [ngValue]="acc" [value]="acc.acct_no">{{acc.acct_no}} - {{acc.acct_name}} (Current balance:{{acc.current_bal}}$)</option>
         </select>
       </div>
       <small id="emailHelp" class="form-text text-muted">Please choose the one of your accounts!</small>
     </div>
     <div class="form-group">
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker1" placeholder="From date">
+      <mat-form-field class="col-md-6">
+        <input matInput [matDatepicker]="picker1" placeholder="From date" name="from_date" [(ngModel)]="from_date" required>
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
-    </div>
-    <div class="form-group">
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker2" placeholder="To date">
+      <mat-form-field class="col-md-6">
+        <input matInput [matDatepicker]="picker2" placeholder="To date" name="to_date" [(ngModel)]="to_date" required>
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
+
     </div>
-    <button type="button" class="btn btn-outline-info">Search</button>
+    <input type="submit" [disabled]="!f.valid" class="btn btn-outline-info" value="Search" />
   </form>
   <hr class="my-4">
 

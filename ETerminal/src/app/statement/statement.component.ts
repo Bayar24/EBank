@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { MatTableDataSource } from '@angular/material';
@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class StatementComponent implements OnInit {
 
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns = ['_id', 'tran_date', 'tran_type', 'from_acct_no', 'to_acct_no', 'amount', 'description'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(filterValue: string) {
@@ -19,17 +19,36 @@ export class StatementComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-
+  @ViewChild('f') myForm;
   private sub: Subscription;
   private transactions: any[];
+  accounts;
+  errMsgAcct;
   constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.loadAccounts();
+    // //this.sub 
+    // this.transactions = this.data.getTransactions();/* .subscribe(
+    //   res => this.accounts = res,
+    //   err => console.log(err)); */
+  }
 
-    //this.sub 
-    this.transactions = this.data.getTransactions();/* .subscribe(
+  loadAccounts() {
+    this.sub = this.data.getAccounts().subscribe(
       res => this.accounts = res,
-      err => console.log(err)); */
+      err => console.log(err)
+    );
+  }
+
+  onSubmit(form) {
+    if (form.valid) {
+      console.log(form.value);
+    }
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

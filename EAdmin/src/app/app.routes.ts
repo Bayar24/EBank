@@ -15,10 +15,16 @@ const MYROUTES: Routes = [
     { path: 'custdetail', component: CustDetailComponent },
     { path: 'custdetail/:id', component: CustDetailComponent },
     { path: 'account/:id', component: AccountComponent },
+    { path: 'acntdetail', component: AcntDetailComponent },
     { path: 'account/acntdetail/:id', component: AcntDetailComponent },
-    { path: 'transaction', component: TransactionComponent },
-    { path: 'transaction/deposit', component: DepositComponent },
-    { path: 'transaction/withdraw', component: WithdrawComponent }
+    {
+        path: 'transaction', component: TransactionComponent,
+        children: [
+            { path: 'deposit', component: DepositComponent },
+            { path: 'withdraw', component: WithdrawComponent }
+        ]
+    }
+
 ];
 
 export const myRoutes = RouterModule.forRoot(MYROUTES);

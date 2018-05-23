@@ -2,17 +2,15 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
-import { CustInfo } from './custinfo';
-
 
 @Component({
-  selector: 'app-customer',
-  templateUrl: './custdetail.component.html'
+  selector: 'acntdetail',
+  templateUrl: './acntdetail.component.html'
 })
-export class CustDetailComponent implements OnInit {
+export class AcntDetailComponent implements OnInit {
   @ViewChild('f') private custForm: any;
   private sub: Subscription;
-  private customer: CustInfo;
+  private account: any;
   private isNew: boolean = false;
   private genders = [
     'Male',
@@ -23,7 +21,7 @@ export class CustDetailComponent implements OnInit {
     this.load();
   }
   load() {
-    this.customer = {
+    this.account = {
       cust_no: undefined,
       first_name: '',
       middle_name: '',
@@ -43,16 +41,6 @@ export class CustDetailComponent implements OnInit {
         no: ''
       }
     };
-    let custid = this.route.snapshot.paramMap.get('id');
-    if (custid !== undefined && custid !== null) {
-      this.isNew = false;
-      this.sub = this.data.getCustomer(parseInt(custid)).subscribe(
-        res => this.customer = res as CustInfo,
-        err => console.log(err));
-    }
-    else {
-      this.isNew = true;
-    }
   }
   onSubmit() {
     if (this.isNew) {

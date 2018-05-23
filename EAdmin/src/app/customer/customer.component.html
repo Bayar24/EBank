@@ -1,4 +1,53 @@
-<div class="container">
+<div class="jumbotron">
+  <h1 class="display-4">Customers</h1>
+  <hr class="my-4">
+  <div>
+    <a [routerLink]="['../custdetail']">
+      <button class="btn btn-success"> Add Customer</button>
+    </a>
+  </div>
+  <div class="row justify-content-md-center">
+    <table mat-table [dataSource]="customers" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="cust_no">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let cust"> {{cust.cust_no}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let cust"> {{cust.first_name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let cust"> {{cust.last_name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date_of_birth">
+        <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+        <td mat-cell *matCellDef="let cust"> {{cust.date_of_birth | date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="detail">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let cust">
+          <a [routerLink]="['../custdetail',cust.cust_no]">Detail</a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accounts">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let cust">
+          <a [routerLink]="['../account',cust.cust_no]">Accounts</a>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
+
+<!-- <div class="container">
   <div class="justify-content-md-center">
     <h2>Customers</h2>
     <div>
@@ -31,39 +80,4 @@
   </div>
 </div>
 
-<!-- <div class="jumbotron">
-    <h1 class="display-4">Customers</h1>
-    <hr class="my-4">
-    <div>
-      <a [routerLink]="['../custdetail']">
-        <button class="btn btn-success"> Add Customer</button>
-      </a>
-    </div>
-    <div class="row justify-content-md-center">
-      <table mat-table [dataSource]="customers" class="mat-elevation-z8">
-  
-        <ng-container matColumnDef="cust_no">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let cust"> {{cust.cust_no}} </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="first_name">
-          <th mat-header-cell *matHeaderCellDef> First Name </th>
-          <td mat-cell *matCellDef="let cust"> {{cust.first_name}} </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="last_name">
-          <th mat-header-cell *matHeaderCellDef> Last Name </th>
-          <td mat-cell *matCellDef="let cust"> {{cust.last_name}} </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="date_of_birth">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let cust"> {{cust.date_of_birth}} </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-  </div> -->
+ -->

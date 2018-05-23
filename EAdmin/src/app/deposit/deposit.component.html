@@ -1,7 +1,7 @@
 <div class="deposit container">
-  <form>
+  <form novalidate #f="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="receiverCustNo">Sender's customer NO</label>
+      <label for="receiverCustNo">Receiver's customer NO</label>
       <div class="input-group mb-3">
         <input type="text" id="receiverCustNo" class="form-control" placeholder="Receiver's customer NO" aria-label="Receiver's customer NO"
           aria-describedby="basic-addon2" name="cust_no" [(ngModel)]="tran.cust_no" #custno="ngModel">
@@ -11,8 +11,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="receiverName">Sender's name</label>
-      <input type="text" class="form-control" readonly id="receiverName" placeholder="Choose sender's customer NO" name="name"
+      <label for="receiverName">Receiver's name</label>
+      <input type="text" class="form-control" readonly id="receiverName" placeholder="Choose receiver's customer NO" name="name"
         [(ngModel)]="tran.name">
     </div>
     <hr />
@@ -35,28 +35,13 @@
     </div>
     <hr />
     <div class="form-group">
-      <label for="InputReceiverAccountNum">Receiver's account number</label>
-      <div class="input-group mb-3">
-        <input type="text" id="InputReceiverAccountNum" class="form-control" placeholder="Receiver's account number" aria-label="Receiver's account number"
-          aria-describedby="basic-addon2" name="acct_no2" [(ngModel)]="tran.acct_no2" #acctno2="ngModel">
-        <div class="input-group-append">
-          <button class="btn btn-outline-success" type="button" (click)="searchReceiver()">Search</button>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="InputReceiverAccountName">Receiver's account name</label>
-      <input type="text" class="form-control" readonly id="InputReceiverAccountName" placeholder="Choose receiver's account number"
-        name="acct_name2" [(ngModel)]="tran.acct_name2">
-    </div>
-    <hr />
-    <div class="form-group">
       <label for="InputAmount">Transaction info</label>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">$</span>
         </div>
-        <input type="text" placeholder="Type the amount here..." id="InputAmount" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <input type="text" placeholder="Type the amount here..." id="InputAmount" class="form-control" aria-label="Amount (to the nearest dollar)"
+          name="amount" [(ngModel)]="tran.amount" #amount="ngModel">
         <div class="input-group-append">
           <span class="input-group-text">.00</span>
         </div>
@@ -67,7 +52,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Description</span>
         </div>
-        <textarea class="form-control" placeholder="Type your description here..." aria-label="Description"></textarea>
+        <textarea class="form-control" name="description" [(ngModel)]="tran.description" placeholder="Type your description here..." aria-label="Description" #description="ngModel"></textarea>
       </div>
     </div>
     <hr />

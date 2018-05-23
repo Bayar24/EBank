@@ -21,9 +21,11 @@ export class DataService {
   }
   updateCustomer(custinfo: any) {
     const body = JSON.stringify(custinfo);
-    console.log(body);
     let id = custinfo.cust_no;
     return this.http.put(`http://localhost:3000/cust/${id}`, body, httpOptions);
+  }
+  getAllAccounts() {
+    return this.http.get(`http://localhost:3000/acct`);
   }
   getCustAccounts(id: number) {
     return this.http.get(`http://localhost:3000/cust/${id}/acct`);
@@ -31,18 +33,14 @@ export class DataService {
   getAccount(id: string) {
     return this.http.get(`http://localhost:3000/acct/${id}`);
   }
-  getTransactions() {
-    let trans: any[];
-    trans = [{ amount: '100', begbal: '12345', endbal: '12445', trandate: '12/02/2018' }];
-    return trans;//this.http.get(`http://localhost:3000/api/recent/transaction/`);
-  }
-  getUserInfo() {
-    return this.http.get('http://localhost:3000/api/home');
-  }
-  makePayment(payment: object) {
-    const body = JSON.stringify(payment);
+  createAccount(acnt: string) {
+    const body = JSON.stringify(acnt);
     console.log(body);
-    return this.http.post('http://localhost:3000/api/makepayment', body, httpOptions);
+    return this.http.post(`http://localhost:3000/acct/`, body, httpOptions);
   }
-
+  doTransfer(txn: any) {
+    const body = JSON.stringify(txn);
+    console.log(body);
+    return this.http.post(`http://localhost:3000/tran/`, body, httpOptions);
+  }
 }

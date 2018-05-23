@@ -20,8 +20,11 @@ interface Tran {
 export class DepositComponent implements OnInit {
   @ViewChild('custno') private custno: any;
   @ViewChild('acctno2') private acctno2: any;
+  @ViewChild('amount') private amount: any;
+  @ViewChild('description') private description: any;
   private sub: Subscription;
   private tran: any;
+  private txn: any;
   constructor(private data: DataService) { }
 
   ngOnInit() {
@@ -49,8 +52,12 @@ export class DepositComponent implements OnInit {
       this.tran.acct_no2 = this.acctno2.value;
       this.sub = this.data.getAccount(this.acctno2.value).subscribe(
         res => {
-          this.tran.acct_name2 = (<AcntInfo>res).acct_name;
-          console.log(this.tran.acct_name2);
+          if (res) {
+            this.tran.acct_name2 = (<AcntInfo>res).acct_name;
+          }
+          else{
+            this.tran.acct_name2 = "";
+          }
         },
         err => console.log(err));
     }
@@ -64,5 +71,19 @@ export class DepositComponent implements OnInit {
         }
       });
     }
+  }
+  onSubmit(){
+    this.txn = {
+      from_acct_no: this.tran.acct_no,
+      to_acct_no: this.acctno2.value,
+      amount: this.amount.value,
+      description: this.description.value,
+      tran_type: 'D'
+    }
+    this.sub = this.data.doTransfer(this.txn).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => console.log(err));
   }
 }

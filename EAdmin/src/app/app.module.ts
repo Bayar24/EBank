@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 
 import { myRoutes } from './app.routes';
 import { DataService } from './data.service';
@@ -43,6 +45,8 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
     MatTableModule,
     MatInputModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     myRoutes
   ],
   providers: [DataService],

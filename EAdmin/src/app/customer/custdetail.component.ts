@@ -3,14 +3,16 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { CustInfo } from './custinfo';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
-  templateUrl: './custdetail.component.html'
+  templateUrl: './custdetail.component.html',
+  styles: ['.legend {display: block;padding-left: 2px;padding-right: 2px;border: none;}']
 })
 export class CustDetailComponent implements OnInit {
   @ViewChild('f') private custForm: any;
+  @ViewChild('pCustNo') private custno: any;
   private sub: Subscription;
   private customer: CustInfo;
   private isNew: boolean = false;
@@ -18,7 +20,7 @@ export class CustDetailComponent implements OnInit {
     'Male',
     'Female'
   ];
-  constructor(private route: ActivatedRoute, private data: DataService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private data: DataService) { }
   ngOnInit() {
     this.load();
   }
@@ -57,9 +59,12 @@ export class CustDetailComponent implements OnInit {
   onSubmit() {
     if (this.isNew) {
       this.sub = this.data.insertCustomer(this.custForm.value).subscribe(
-        res => console.log(res),
+        res => {
+          console.log(this.custno.value);
+          this.isNew = false;
+          this.router.navigate(['custdetail/' + this.custno.value]);
+        },
         err => console.log(err));
-      this.isNew = false;
     }
     else {
       this.sub = this.data.updateCustomer(this.custForm.value).subscribe(

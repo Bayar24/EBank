@@ -64,7 +64,7 @@ export class CustDetailComponent implements OnInit {
           this.isNew = false;
           this.router.navigate(['custdetail/' + this.custno.value]);
         },
-        err => console.log(err));
+        err => console.log("err:"+err));
     }
     else {
       this.sub = this.data.updateCustomer(this.custForm.value).subscribe(

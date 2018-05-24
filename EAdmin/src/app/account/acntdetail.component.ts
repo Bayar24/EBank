@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { DataService } from '../data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -26,7 +27,7 @@ export class AcntDetailComponent implements OnInit {
   private amnt: any;
   private custid: number = 0;
   private bank_account: boolean = false;
-  constructor(private route: ActivatedRoute, private data: DataService) {
+  constructor(private route: ActivatedRoute, private data: DataService, public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -50,11 +51,17 @@ export class AcntDetailComponent implements OnInit {
       this.sub = this.data.createAccount(this.acnt).subscribe(
         res => {
           console.log(res);
+          this.openSnackBar('New account created.');
         },
-        err => console.log(err));
+        err => { console.log('err'); console.log(err); });
     }
   }
   generate() {
     this.acct_no = 40000000 + Math.floor(Math.random() * (999999 - 100000 + 1));
+  }
+  openSnackBar(message: string) {
+    this.snackBar.open(message, "OK!", {
+      duration: 2000,
+    });
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
@@ -20,7 +21,7 @@ export class CustDetailComponent implements OnInit {
     'Male',
     'Female'
   ];
-  constructor(private route: ActivatedRoute, private router: Router, private data: DataService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private data: DataService, public snackBar: MatSnackBar) { }
   ngOnInit() {
     this.load();
   }
@@ -62,15 +63,21 @@ export class CustDetailComponent implements OnInit {
         res => {
           console.log(this.custno.value);
           this.isNew = false;
+          this.openSnackBar('New customer created.');
           this.router.navigate(['custdetail/' + this.custno.value]);
         },
-        err => console.log("err:"+err));
+        err => console.log("err:" + err));
     }
     else {
       this.sub = this.data.updateCustomer(this.custForm.value).subscribe(
-        res => console.log(res),
-        err => console.log(err));
+        res => { console.log(res); this.openSnackBar('Customer updated.'); },
+        err => { console.log('err'); console.log(err); });
     }
+  }
+  openSnackBar(message: string) {
+    this.snackBar.open(message, "OK!", {
+      duration: 2000,
+    });
   }
 }
 

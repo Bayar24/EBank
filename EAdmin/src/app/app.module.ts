@@ -22,6 +22,9 @@ import { AcntDetailComponent } from './account/acntdetail.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
     AcntDetailComponent,
     TransactionComponent,
     DepositComponent,
-    WithdrawComponent
+    WithdrawComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,7 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
     MatNativeDateModule,
     myRoutes
   ],
-  providers: [DataService],
+  providers: [DataService, AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

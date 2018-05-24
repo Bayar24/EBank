@@ -1,46 +1,65 @@
 import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+const base_url = "http://localhost:3000";
 
 @Injectable()
 export class DataService {
-  constructor(public http: HttpClient) { }
+  currentUser;
+
+  constructor(public http: HttpClient, private authService: AuthService) { }
   getCustomers() {
-    return this.http.get(`http://localhost:3000/cust`);
+    return this.http.get(`http://localhost:3000/cust`, {
+      headers: this.authService.buildHeaders()
+    });
   }
   getCustomer(id: number) {
-    return this.http.get(`http://localhost:3000/cust/${id}`);
+    return this.http.get(`http://localhost:3000/cust/${id}`, {
+      headers: this.authService.buildHeaders()
+    });
   }
   insertCustomer(custinfo: object) {
     const body = JSON.stringify(custinfo);
     console.log(body);
-    return this.http.post(`http://localhost:3000/cust/`, body, httpOptions);
+    return this.http.post(`http://localhost:3000/cust/`, body, {
+      headers: this.authService.buildHeaders()
+    });
   }
   updateCustomer(custinfo: any) {
     const body = JSON.stringify(custinfo);
     let id = custinfo.cust_no;
-    return this.http.put(`http://localhost:3000/cust/${id}`, body, httpOptions);
+    return this.http.put(`http://localhost:3000/cust/${id}`, body, {
+      headers: this.authService.buildHeaders()
+    });
   }
   getAllAccounts() {
-    return this.http.get(`http://localhost:3000/acct`);
+    return this.http.get(`http://localhost:3000/acct`, {
+      headers: this.authService.buildHeaders()
+    });
   }
   getCustAccounts(id: number) {
-    return this.http.get(`http://localhost:3000/cust/${id}/acct`);
+    return this.http.get(`http://localhost:3000/cust/${id}/acct`, {
+      headers: this.authService.buildHeaders()
+    });
   }
   getAccount(id: string) {
-    return this.http.get(`http://localhost:3000/acct/${id}`);
+    return this.http.get(`http://localhost:3000/acct/${id}`, {
+      headers: this.authService.buildHeaders()
+    });
   }
   createAccount(acnt: string) {
     const body = JSON.stringify(acnt);
     console.log(body);
-    return this.http.post(`http://localhost:3000/acct/`, body, httpOptions);
+    return this.http.post(`http://localhost:3000/acct/`, body, {
+      headers: this.authService.buildHeaders()
+    });
   }
   doTransfer(txn: any) {
     const body = JSON.stringify(txn);
     console.log(body);
-    return this.http.post(`http://localhost:3000/tran/`, body, httpOptions);
+    return this.http.post(`http://localhost:3000/tran/`, body, {
+      headers: this.authService.buildHeaders()
+    });
   }
 }

@@ -8,23 +8,26 @@ import { AcntDetailComponent } from './account/acntdetail.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const MYROUTES: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },
-    { path: 'customer', component: CustomerComponent },
-    { path: 'custdetail', component: CustDetailComponent },
-    { path: 'custdetail/:id', component: CustDetailComponent },
-    { path: 'account', component: AccountComponent },
-    { path: 'account/:id', component: AccountComponent },
-    { path: 'acntdetail', component: AcntDetailComponent },
-    { path: 'account/acntdetail/:id', component: AcntDetailComponent },
+    { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard] },
+    { path: 'custdetail', component: CustDetailComponent, canActivate: [AuthGuard] },
+    { path: 'custdetail/:id', component: CustDetailComponent, canActivate: [AuthGuard] },
+    { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+    { path: 'account/:id', component: AccountComponent, canActivate: [AuthGuard] },
+    { path: 'acntdetail', component: AcntDetailComponent, canActivate: [AuthGuard] },
+    { path: 'account/acntdetail/:id', component: AcntDetailComponent, canActivate: [AuthGuard] },
     {
         path: 'transaction', component: TransactionComponent,
         children: [
             { path: 'deposit', component: DepositComponent },
             { path: 'withdraw', component: WithdrawComponent }
-        ]
-    }
+        ], canActivate: [AuthGuard]
+    },
+    { path: 'login', component: LoginComponent }
 
 ];
 

@@ -1,61 +1,72 @@
-<div class="deposit container">
-  <form novalidate #f="ngForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="receiverCustNo">Receiver's customer NO</label>
-      <div class="input-group mb-3">
-        <input type="text" id="receiverCustNo" class="form-control" placeholder="Receiver's customer NO" aria-label="Receiver's customer NO"
-          aria-describedby="basic-addon2" name="cust_no" [(ngModel)]="tran.cust_no" #custno="ngModel">
-        <div class="input-group-append">
-          <button class="btn btn-outline-success" type="button" (click)="search()">Search</button>
+<div class="jumbotron">
+  <div class="deposit container">
+    <form novalidate #f="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="receiverCustNo">Customer NO </label>
+        <small style="color:red;">{{errMsgCust}}</small>
+        <div class="input-group mb-3">
+          <input type="text" id="receiverCustNo" class="form-control" placeholder="Customer NO" aria-label="Receiver's customer NO"
+            aria-describedby="basic-addon2" name="cust_no" [(ngModel)]="tran.cust_no" #custno="ngModel">
+          <div class="input-group-append">
+            <button class="btn btn-outline-success" type="button" (click)="search()">Search</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="receiverName">Receiver's name</label>
-      <input type="text" class="form-control" readonly id="receiverName" placeholder="Choose receiver's customer NO" name="name"
-        [(ngModel)]="tran.name">
-    </div>
-    <hr />
-    <div class="form-group">
-      <label for="InputAccountNum">Account number</label>
-      <div class="input-group">
-        <select class="custom-select" id="InputAccountNum" (change)="onChange($event.target.value)">
-          <option>Choose..</option>
-          <option *ngFor="let acnt of tran.accounts" [value]="acnt.acct_no">
-            {{acnt.acct_no}}
-          </option>
-        </select>
+      <div class="form-group">
+        <label for="receiverName">Customer name</label>
+        <input type="text" class="form-control" readonly id="receiverName" placeholder="Choose Customer NO" name="name"
+          [(ngModel)]="tran.name">
       </div>
-      <small id="emailHelp" class="form-text text-muted">Please choose the one of your accounts!</small>
-    </div>
-    <div class="form-group">
-      <label for="InputAccountName">Account name</label>
-      <input type="text" class="form-control" readonly id="InputAccountName" placeholder="Choose your account number" [(ngModel)]="tran.acct_name"
-        name="acct_name">
-    </div>
-    <hr />
-    <div class="form-group">
-      <label for="InputAmount">Transaction info</label>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">$</span>
+      <hr />
+      <div class="form-group">
+        <label for="InputAccountNum">Account number</label>
+        <small style="color:red;">{{errMsgAcct}}</small>
+        <div class="input-group">
+          <select class="custom-select" id="InputAccountNum" (change)="onChange($event.target.value)">
+            <option>Choose..</option>
+            <option *ngFor="let acnt of tran.accounts" [value]="acnt.acct_no">
+              {{acnt.acct_no}} - {{acnt.acct_name}} (Current balance:{{acnt.current_bal}}$)
+            </option>
+          </select>
         </div>
-        <input type="text" placeholder="Type the amount here..." id="InputAmount" class="form-control" aria-label="Amount (to the nearest dollar)"
-          name="amount" [(ngModel)]="tran.amount" #amount="ngModel">
-        <div class="input-group-append">
-          <span class="input-group-text">.00</span>
+        <small id="emailHelp" class="form-text text-muted">Please choose the one of your accounts!</small>
+      </div>
+      <div class="form-group">
+        <label for="InputAccountName">Account name</label>
+        <input type="text" class="form-control" readonly id="InputAccountName" placeholder="Choose your account number" [(ngModel)]="tran.acct_name"
+          name="acct_name">
+      </div>
+      <hr />
+      <div class="form-group">
+        <label for="InputAmount">Transaction info</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input type="number" required placeholder="Type the amount here..." id="InputAmount" class="form-control" aria-label="Amount (to the nearest dollar)"
+            name="amount" [(ngModel)]="tran.amount" #amount="ngModel">
+          <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+        <div *ngIf="amount.errors && (amount.dirty || amount.touched)">
+          <small style="color:red;" *ngIf="amount.errors.required">You need to insert a transaction amount</small>
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Description</span>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Description</span>
+          </div>
+          <textarea class="form-control" required name="description" [(ngModel)]="tran.description" placeholder="Type your description here..."
+            aria-label="Description" #description="ngModel"></textarea>
         </div>
-        <textarea class="form-control" name="description" [(ngModel)]="tran.description" placeholder="Type your description here..." aria-label="Description" #description="ngModel"></textarea>
+        <div *ngIf="description.errors && (description.dirty || description.touched)">
+          <small style="color:red;" *ngIf="description.errors.required">You need to insert a transaction desc</small>
+        </div>
       </div>
-    </div>
-    <hr />
-    <input type="submit" class="btn btn-success btn-lg btn-block" value="Make transaction">
-  </form>
+      <hr />
+      <input type="submit" [disabled]="!f.valid" class="btn btn-success btn-lg btn-block" value="Make transaction">
+    </form>
+  </div>
 </div>

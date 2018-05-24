@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +52,7 @@ export class AuthService {
       location.reload();
     }, (errorResp) => {
       this.loggedIn.next(undefined);
-      errorResp.error ? this.toastr.error(errorResp.error.errorMessage) : this.toastr.error('An unknown error has occured.');
+      errorResp.error ? this.openSnackBar(errorResp.error.errorMessage) : this.openSnackBar('An unknown error has occured.');
     });
   }
 
@@ -64,6 +64,11 @@ export class AuthService {
   }
 
 
-  constructor(private http: HttpClient,
-    private toastr: ToastrService, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, public snackBar: MatSnackBar) { }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, "OK!", {
+      duration: 2000,
+    });
+  }
 }

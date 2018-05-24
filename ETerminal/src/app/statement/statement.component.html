@@ -50,7 +50,11 @@
 
       <ng-container matColumnDef="tran_type">
         <th mat-header-cell *matHeaderCellDef> Transaction type </th>
-        <td mat-cell *matCellDef="let element"> {{element.tran_type}} </td>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.tran_type=='t'" class="badge badge-pill badge-primary">Transfer</span>
+          <span *ngIf="element.tran_type=='D'" class="badge badge-pill badge-success">Deposit</span>
+          <span *ngIf="element.tran_type=='W'" class="badge badge-pill badge-primary">Withdraw</span>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="from_acct_no">

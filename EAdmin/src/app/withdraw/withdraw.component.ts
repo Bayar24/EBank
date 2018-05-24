@@ -111,7 +111,7 @@ export class WithdrawComponent implements OnInit {
           to_acct_no: this.bankAccount,
           amount: this.amount.value,
           description: this.description.value,
-          tran_type: 'D'
+          tran_type: 'W'
         }
         this.sub = this.data.doTransfer(this.txn).subscribe(
           res => {

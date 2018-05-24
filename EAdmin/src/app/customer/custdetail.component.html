@@ -6,7 +6,7 @@
                     <label>Customer No</label>
                     <input type="number" name="cust_no" class="form-control input-sm" [(ngModel)]="customer.cust_no" #pCustNo="ngModel" required>
                     <div *ngIf="pCustNo.errors && (pCustNo.dirty || pCustNo.touched)">
-                        <p *ngIf="pCustNo.errors.required" class="red">Required</p>
+                        <small style="color:red;" *ngIf="pCustNo.errors.required">You need to insert a Customer No</small>
                     </div>
                 </div>
                 <div class="form-group-sm">
@@ -14,7 +14,7 @@
                     <input type="text" name="first_name" class="form-control input-sm" [(ngModel)]="customer.first_name" #pFirstName="ngModel"
                         required>
                     <div *ngIf="pFirstName.errors && (pFirstName.dirty || pFirstName.touched)">
-                        <p *ngIf="pFirstName.errors.required" class="red">Required</p>
+                        <small style="color:red;" *ngIf="pFirstName.errors.required">You need to insert a first name</small>
                     </div>
                 </div>
                 <div class="form-group-sm">
@@ -25,36 +25,49 @@
                     <label>Last name</label>
                     <input type="text" name="last_name" class="form-control" [(ngModel)]="customer.last_name" #pLastName="ngModel" required>
                     <div *ngIf="pLastName.errors && (pLastName.dirty || pLastName.touched)">
-                        <p *ngIf="pLastName.errors.required" class="red">Required</p>
+                        <small style="color:red;" *ngIf="pLastName.errors.required">You need to insert a last name</small>
                     </div>
                 </div>
                 <div class="form-group-sm">
                     <label>SSN</label>
                     <input type="text" name="ssn" class="form-control" [(ngModel)]="customer.ssn" #pSsn="ngModel" required>
                     <div *ngIf="pSsn.errors && (pSsn.dirty || pSsn.touched)">
-                        <p *ngIf="pSsn.errors.required" class="red">Required</p>
+                        <small style="color:red;" *ngIf="pSsn.errors.required">You need to insert a SSN</small>
                     </div>
                 </div>
                 <div class="form-group-sm">
                     <label>Birth date</label>
-                    <input type="text" name="date_of_birth" class="form-control" [(ngModel)]="customer.date_of_birth">
+                    <mat-form-field class="col-md-6">
+                        <input matInput [matDatepicker]="picker2" placeholder="Birth date" name="date_of_birth" [(ngModel)]="customer.date_of_birth"
+                            required>
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
                 </div>
                 <div class="form-group-sm">
                     <label>User name</label>
                     <input type="text" name="username" class="form-control" [(ngModel)]="customer.username" #pUsername="ngModel" required>
                     <div *ngIf="pUsername.errors && (pUsername.dirty || pUsername.touched)">
-                        <p *ngIf="pUsername.errors.required" class="red">Required</p>
+                        <small style="color:red;" *ngIf="pUsername.errors.required">You need to insert a username</small>
                     </div>
                 </div>
                 <div class="form-group-sm">
                     <label>Password</label>
                     <input type="text" name="password" class="form-control" [(ngModel)]="customer.password" #pPassword="ngModel" required>
                     <div *ngIf="pPassword.errors && (pPassword.dirty || pPassword.touched)">
-                        <p *ngIf="pPassword.errors.required" class="red">Required</p>
+                        <small style="color:red;" *ngIf="pPassword.errors.required">You need to insert a password</small>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
+                <div class="form-group-sm">
+                    <label for="sex">Sex</label>
+                    <div class="input-group">
+                        <select class="form-control" [(ngModel)]="customer.sex" name="sex">
+                            <option *ngFor="let c of genders" [ngValue]="c">{{c}}</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group-sm">
                     <label>Contact Phone</label>
                     <input type="text" name="contact_phone" class="form-control" [(ngModel)]="customer.contact_phone">
@@ -67,14 +80,13 @@
                         Invalid email
                     </div>
                 </div>
-                <!--     <div class="radio" *ngFor="let g of genders">
-                                <label>
-                                    <input type="radio" name="gender" [(ngModel)]="customer.sex" [value]="g"> {{g}}
-                                </label>
-                            </div> -->
+                <div>
+                    <h3>Address</h3>
+                </div>
+                <hr/>
                 <div ngModelGroup="address">
                     <div class="form-group-sm">
-                        <label>Address</label>
+                        <label>Zip</label>
                         <input type="text" class="form-control" name="zip" [(ngModel)]="customer.address.zip">
                     </div>
                     <div class="form-group-sm">
@@ -92,10 +104,9 @@
                 </div>
                 <br/>
                 <div align="right">
-                    <button type="submit" class="btn btn-primary" style="margin-right: 10px">Submit</button>
+                    <button type="submit" [disabled]="!f.valid" class="btn btn-primary" style="margin-right: 10px">Submit</button>
                     <a class="btn btn-warning" *ngIf="isNew" [routerLink]="['../customer']">Back</a>
                     <a class="btn btn-warning" *ngIf="!isNew" [routerLink]="['../../customer']">Back</a>
-
                 </div>
             </div>
 

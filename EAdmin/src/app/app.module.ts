@@ -6,7 +6,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material';
 
 import { myRoutes } from './app.routes';
 import { DataService } from './data.service';
@@ -42,7 +42,7 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
     BrowserAnimationsModule,
     MatTableModule,
     MatInputModule,
-    MatSortModule,
+    MatSnackBarModule,
     myRoutes
   ],
   providers: [DataService],

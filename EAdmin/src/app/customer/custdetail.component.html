@@ -93,9 +93,9 @@
                 <br/>
                 <div align="right">
                     <button type="submit" class="btn btn-primary" style="margin-right: 10px">Submit</button>
-                    <button type="button" class="btn btn-warning">
-                        <a [routerLink]="['../../customer']">Back</a>
-                    </button>
+                    <a class="btn btn-warning" *ngIf="isNew" [routerLink]="['../customer']">Back</a>
+                    <a class="btn btn-warning" *ngIf="!isNew" [routerLink]="['../../customer']">Back</a>
+
                 </div>
             </div>
 

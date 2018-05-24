@@ -6,8 +6,13 @@
       <button class="btn btn-success"> Add Customer</button>
     </a>
   </div>
+  <div>
+    <mat-form-field style="width: 100%">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
   <div class="row justify-content-md-center">
-    <table mat-table [dataSource]="customers" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="cust_no">
         <th mat-header-cell *matHeaderCellDef> No. </th>

@@ -10,7 +10,7 @@ import { MatNativeDateModule, MatInputModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { Routes, RouterModule } from '@angular/router';
 
@@ -24,8 +24,8 @@ import { StatementComponent } from './statement/statement.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { LoginComponent } from './login/login.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { CustDetailComponent } from './customer/custdetail.component';
 import { AuthService } from './auth.service';
-import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './auth.guard';
 
 
@@ -36,7 +36,8 @@ import { AuthGuard } from './auth.guard';
     StatementComponent,
     TransactionComponent,
     LoginComponent,
-    AccountsComponent
+    AccountsComponent,
+    CustDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +53,7 @@ import { AuthGuard } from './auth.guard';
     MatInputModule,
     MatSnackBarModule,
     MatTableModule,
-    MatIconModule,
-    ToastrModule.forRoot()
+    MatIconModule
   ],
   exports: [
     RouterModule

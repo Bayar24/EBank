@@ -41,5 +41,16 @@ export class DataService {
   getUserInfo() {
     return this.http.get('http://localhost:3000/api/home');
   }
-
+  getCustomer(id: number) {
+    return this.http.get(`http://localhost:3000/cust/${id}`, {
+      headers: this.authService.buildHeaders()
+    });
+  }
+  updateCustomer(custinfo: any) {
+    const body = JSON.stringify(custinfo);
+    let id = custinfo.cust_no;
+    return this.http.put(`http://localhost:3000/cust/${id}`, body, {
+      headers: this.authService.buildHeaders()
+    });
+  }
 }

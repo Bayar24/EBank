@@ -46,6 +46,7 @@ export class AuthService {
       this.loggedIn.next(true);
       this.saveToken(resp.token);
       this.user = resp.user;
+      console.log(resp);
       this.isLoggedIn = true;
       localStorage.setItem('currentUser', this.user);
       this.router.navigate(['/']);

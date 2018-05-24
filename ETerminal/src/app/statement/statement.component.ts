@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-statement',
@@ -23,15 +24,15 @@ export class StatementComponent implements OnInit {
   private sub: Subscription;
   private transactions: any[];
   accounts;
+  acct_no;
   errMsgAcct;
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.acct_no = params['acct_no'];
+    });
     this.loadAccounts();
-    // //this.sub 
-    // this.transactions = this.data.getTransactions();/* .subscribe(
-    //   res => this.accounts = res,
-    //   err => console.log(err)); */
   }
 
   loadAccounts() {
@@ -43,7 +44,10 @@ export class StatementComponent implements OnInit {
 
   onSubmit(form) {
     if (form.valid) {
-      console.log(form.value);
+      this.sub = this.data.getTransactions(form.value).subscribe(
+        (res) => { this.dataSource = new MatTableDataSource(<StatementElement[]>res); },
+        (err) => console.log(err)
+      );
     }
   }
 
@@ -53,22 +57,14 @@ export class StatementComponent implements OnInit {
 
 }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface StatementElement {
+  _id: number;
+  tran_date: Date;
+  tran_type: string;
+  from_acct_no: number;
+  to_acct_no: number;
+  amount: number;
+  description: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+const ELEMENT_DATA: StatementElement[] = [];

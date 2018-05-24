@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthService } from './auth.service';
 
 const base_url = "http://localhost:3000";
@@ -28,10 +28,15 @@ export class DataService {
     });
   }
 
-  getTransactions() {
-    let trans: any[];
-    trans = [{ amount: '100', begbal: '12345', endbal: '12445', trandate: '12/02/2018' }];
-    return trans;//this.http.get(`http://localhost:3000/api/recent/transaction/`);
+  getTransactions(data) {
+    // const body = JSON.stringify(data);
+    let params = new HttpParams().set('acct_no', data.acct_no);
+    params = params.set('from_date', data.from_date);
+    params = params.set('to_date', data.to_date);
+    return this.http.get(`${base_url}/tran`, {
+      params: params,
+      headers: this.authService.buildHeaders()
+    });
   }
   getUserInfo() {
     return this.http.get('http://localhost:3000/api/home');

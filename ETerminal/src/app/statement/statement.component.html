@@ -53,7 +53,7 @@
         <td mat-cell *matCellDef="let element">
           <span *ngIf="element.tran_type=='t'" class="badge badge-pill badge-primary">Transfer</span>
           <span *ngIf="element.tran_type=='D'" class="badge badge-pill badge-success">Deposit</span>
-          <span *ngIf="element.tran_type=='W'" class="badge badge-pill badge-primary">Withdraw</span>
+          <span *ngIf="element.tran_type=='W'" class="badge badge-pill badge-warning">Withdraw</span>
         </td>
       </ng-container>
 
